@@ -40,8 +40,8 @@ class Pacman {
     if(this.mouth === 'open') {
       this.element.style.backgroundPositionX = '0px';
     } else {
-      this.element.style.backgroundPositionX = GRID_SIZE + 'px';
+      this.element.style.backgroundPositionX = GRID_UNIT + 'px';
     }
-    this.element.style.left = this.xpos * GRID_SIZE + 'px';
+    this.element.style.left = this.xpos * GRID_UNIT + 'px';
   }
 }
