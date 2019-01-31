@@ -1,8 +1,11 @@
 class Pacman {
-  constructor(name, xpos, mouth) {
+  constructor(field, name, xpos, ypos) {
+    this.field = field;
     this.name = name;
     this.xpos = xpos;
-    this.mouth = mouth;
+    this.ypos = ypos;
+    this.mouth = 'open';
+    this.facing = 'right';
   }
 
   move(dir) {
@@ -14,13 +17,28 @@ class Pacman {
     
     switch(dir) {
       case 'right':
-        this.xpos++;
+        if(this.xpos < this.field.width-1) {
+          this.xpos++;
+        }
         break;
       case 'left':
-        this.xpos--;
+        if(this.xpos > 0) {  
+          this.xpos--;
+        }
+        break;
+      case 'up':
+        if(this.ypos > 0) {  
+          this.ypos--;
+        }
+        break;
+      case 'down':
+        if(this.ypos < this.field.height-1) {
+          this.ypos++;
+        }
         break;
     }
     
+    this.facing = dir;
     this.update();
   }
 
@@ -42,6 +60,18 @@ class Pacman {
     } else {
       this.element.style.backgroundPositionX = GRID_UNIT + 'px';
     }
+
+    if(this.facing === 'right') {
+      this.element.style.backgroundPositionY = '0px';
+    } else if(this.facing === 'left'){
+      this.element.style.backgroundPositionY = -GRID_UNIT + 'px';
+    } else if(this.facing === 'down'){
+      this.element.style.backgroundPositionY = -2 * GRID_UNIT + 'px';
+    } else if(this.facing === 'up'){
+      this.element.style.backgroundPositionY = -3 * GRID_UNIT + 'px';
+    }
+   
     this.element.style.left = this.xpos * GRID_UNIT + 'px';
+    this.element.style.top = this.ypos * GRID_UNIT + 'px';
   }
 }
