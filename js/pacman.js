@@ -1,26 +1,47 @@
 class Pacman {
-  constructor(xpos, mouth) {
+  constructor(name, xpos, mouth) {
+    this.name = name;
     this.xpos = xpos;
     this.mouth = mouth;
   }
 
-  move() {
+  move(dir) {
     if(this.mouth === 'open') {
       this.mouth = 'close';
     } else {
       this.mouth = 'open';
     }
-    this.xpos++;
+    
+    switch(dir) {
+      case 'right':
+        this.xpos++;
+        break;
+      case 'left':
+        this.xpos--;
+        break;
+    }
+    
+    this.update();
+  }
+
+  render() {
+    this.element = document.createElement('div');
+    this.element.className = 'pac boy-active-light';
+    this.element.textContent = `${this.name}: 0`;
+    return this.element;
+  }
+
+  mount(parent) {
+    parent.appendChild(this.render());
     this.update();
   }
 
   update() {
-    let pac = document.querySelector('.pac');
     if(this.mouth === 'open') {
-      pac.style.backgroundPositionX = '0px';
+      this.element.style.backgroundPositionX = '0px';
     } else {
-      pac.style.backgroundPositionX = GRID_SIZE + 'px';
+      this.element.style.backgroundPositionX = GRID_SIZE + 'px';
     }
-    pac.style.left = this.xpos * GRID_SIZE + 'px';
+    this.element.style.left = this.xpos * GRID_SIZE + 'px';
   }
 }
