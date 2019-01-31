@@ -1,7 +1,9 @@
 class Pacman {
-  constructor(field, name, xpos, ypos) {
+  constructor(field, name, gender, skinTone, xpos, ypos) {
     this.field = field;
     this.name = name;
+    this.gender = gender;
+    this.skinTone = skinTone;
     this.xpos = xpos;
     this.ypos = ypos;
     this.mouth = 'open';
@@ -44,8 +46,6 @@ class Pacman {
 
   render() {
     this.element = document.createElement('div');
-    this.element.className = 'pac boy-active-light';
-    this.element.textContent = `${this.name}: 0`;
     return this.element;
   }
 
@@ -55,6 +55,8 @@ class Pacman {
   }
 
   update() {
+    this.element.className = `pac ${this.gender}-active-${this.skinTone}`;
+    this.element.textContent = `${this.name}: 0`;
     if(this.mouth === 'open') {
       this.element.style.backgroundPositionX = '0px';
     } else {

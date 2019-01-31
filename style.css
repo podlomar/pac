@@ -39,3 +39,23 @@ body {
 .boy-active-light {
   background-image: url('img/pacboy-active-light.png');
 }
+
+.girl-active-light {
+  background-image: url('img/pacgirl-active-light.png');
+}
+
+.boy-active-medium {
+  background-image: url('img/pacboy-active-medium.png');
+}
+
+.girl-active-medium {
+  background-image: url('img/pacgirl-active-medium.png');
+}
+
+.boy-active-dark {
+  background-image: url('img/pacboy-active-dark.png');
+}
+
+.girl-active-dark {
+  background-image: url('img/pacgirl-active-dark.png');
+}
